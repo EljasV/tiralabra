@@ -5,6 +5,9 @@ enum TileType {
 	Floor
 };
 
+/**
+ * Ei vielä käytössä. Tulee sisältämään kartan pikelien tiedot
+ */
 public class Grid {
 	final int width, height;
 	TileType[][] tileTypes;

@@ -55,7 +55,7 @@ public class Main {
 
 		//
 		// Tietorakenteiden avulla piirretään kuva
-		// Huomio! Tällä hetkellä kuvaan pirretään eri väreillä "osastot", joihin tullaan myöhemmin rakentamaan huoneet.
+		// Huomio! Tällä hetkellä kuvaan pirretään huoneet valkoisella ja vierekkäisten huoneiden välille viivat punaisella
 		Graphics2D graphics = image.createGraphics();
 		SpacePartitioning.Visitor visitor = (SpacePartitioning.Node node, int x, int y) -> {
 			graphics.setColor(new Color(0x66_66_66));

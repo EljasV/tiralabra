@@ -1,7 +1,6 @@
 package veijalainen.eljas.tiralabra;
 
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 
@@ -37,15 +36,13 @@ public class DoublyConnectedEdgeList {
 	}
 
 	class Face {
-		int x, y;
+		RoomInfo roomInfo;
 		Vertex topLeft;
 		Vertex topRight;
 		Vertex bottomRight;
 		Vertex bottomLeft;
 
-		public Face(int x, int y) {
-			this.x = x;
-			this.y = y;
+		public Face() {
 		}
 	}
 
@@ -86,13 +83,15 @@ public class DoublyConnectedEdgeList {
 	 * 2. Hakee suorakulmion kulmat ja tallentaa ne tahkoon
 	 * 3. Uudelleenluo puolisärmät
 	 * 4. Etsii puolisärmien kaksoset
-	 * @param x Suorakulmion vasemman yläkulman x- koordinaatti
-	 * @param y Suorakulmion vasemman yläkulman y-koordinaatti
-	 * @param width Suorakulmion leveys
+	 *
+	 * @param x      Suorakulmion vasemman yläkulman x- koordinaatti
+	 * @param y      Suorakulmion vasemman yläkulman y-koordinaatti
+	 * @param width  Suorakulmion leveys
 	 * @param height Suorakulmion korkeus
+	 * @return
 	 */
-	void addRectangle(int x, int y, int width, int height) {
-		Face face = new Face(x + width / 2, y + height / 2);
+	Face addRectangle(int x, int y, int width, int height) {
+		Face face = new Face();
 		faces.add(face);
 
 		face.topLeft = getVertex(x, y);
@@ -103,6 +102,7 @@ public class DoublyConnectedEdgeList {
 		createEdges();
 
 		correctTwins();
+		return face;
 	}
 
 	/**

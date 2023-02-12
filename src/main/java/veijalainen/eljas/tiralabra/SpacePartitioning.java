@@ -1,7 +1,5 @@
 package veijalainen.eljas.tiralabra;
 
-import java.util.Random;
-
 /**
  * Edustaa puuta, joka pitää sisällään alueita, jonka jokaiseen lehtisolmuun rakennetaan huone.
  */
@@ -9,7 +7,6 @@ public class SpacePartitioning {
 	final int width;
 	final int height;
 
-	static Random random = new Random();
 
 
 	/**
@@ -43,12 +40,12 @@ public class SpacePartitioning {
 			this.isHorizontal = isHorizontal;
 			if (depth > 0) {
 				if (isHorizontal) {
-					int split = (int) (random.nextDouble() * (width * 1d / 3d) + width * 1d / 3d);
+					int split = (int) (CaveGenerator.random.nextDouble() * (width * 1d / 3d) + width * 1d / 3d);
 
 					left = new Node(split, height, !isHorizontal, depth - 1);
 					right = new Node(width - split, height, !isHorizontal, depth - 1);
 				} else {
-					int split = (int) (random.nextDouble() * (height * 1d / 3d) + height * 1d / 3d);
+					int split = (int) (CaveGenerator.random.nextDouble() * (height * 1d / 3d) + height * 1d / 3d);
 					left = new Node(width, split, !isHorizontal, depth - 1);
 					right = new Node(width, height - split, !isHorizontal, depth - 1);
 				}
@@ -68,7 +65,7 @@ public class SpacePartitioning {
 	public SpacePartitioning(int width, int height) {
 		this.width = width;
 		this.height = height;
-		root = new Node(width, height, random.nextBoolean(), 4);
+		root = new Node(width, height, CaveGenerator.random.nextBoolean(), 4);
 	}
 
 	@FunctionalInterface

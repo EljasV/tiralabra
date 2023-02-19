@@ -1,8 +1,10 @@
 package veijalainen.eljas.tiralabra;
 
 enum TileType {
-	Wall,
-	Floor
+	MaybeWall,
+	MaybeFloor,
+	DefinetlyWall,
+	DefinetlyFloor
 };
 
 /**
@@ -12,15 +14,23 @@ public class Grid {
 	final int width, height;
 	TileType[][] tileTypes;
 
-	public Grid(int width, int height, TileType baseType) {
+	public Grid(int width, int height) {
 		this.width = width;
 		this.height = height;
 		tileTypes = new TileType[width][height];
-		fillArea(0, 0, width, height, baseType);
+
+
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				tileTypes[i][j] = CaveGenerator.random.nextBoolean() ? TileType.MaybeWall : TileType.MaybeFloor;
+			}
+		}
 	}
 
 	public void setTile(int x, int y, TileType tileType) {
-		tileTypes[x][y] = tileType;
+		if (0 <= x && x < width && 0 <= y && y < height) {
+			tileTypes[x][y] = tileType;
+		}
 	}
 
 	public void fillArea(int x, int y, int width, int height, TileType tileType) {
@@ -63,5 +73,70 @@ public class Grid {
 				visitor.visit(i, j, tileTypes[i][j]);
 			}
 		}
+	}
+
+
+	/**
+	 * Hanki TileType kartalta. Jos sijainti ulkopuolella, palauta default
+	 *
+	 * @param x           Sijainnin x-koordinaatti
+	 * @param y           Sijainnin y-koordinaatti
+	 * @param defaultTile oletusarvoinen Tile, jos muuta ei löydetä.
+	 * @return TIle sijainnin kohdalla. Jos sijainti kartan ulkopuolella, niin default
+	 */
+	public TileType getSafe(int x, int y, TileType defaultTile) {
+		if (0 <= x && x < width && 0 <= y && y < height) {
+			return tileTypes[x][y];
+		}
+		return defaultTile;
+	}
+
+
+	/**
+	 * Iteroi soluautomaattia
+	 */
+	public void iterate() {
+		TileType[][] oldTiles = tileTypes;
+		TileType[][] newTiles = new TileType[width][height];
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				if (oldTiles[i][j] == TileType.DefinetlyFloor || oldTiles[i][j] == TileType.DefinetlyWall) {
+					newTiles[i][j] = oldTiles[i][j];
+					continue;
+				}
+
+				int wallsAround = 0;
+				for (int k = -1; k <= 1; k++) {
+					for (int l = -1; l <= 1; l++) {
+						TileType inspectedTile = getSafe(i + k, j + l, TileType.DefinetlyWall);
+						if (inspectedTile == TileType.DefinetlyWall || inspectedTile == TileType.MaybeWall) {
+							wallsAround++;
+						}
+					}
+				}
+				if (wallsAround >= 5) {
+					newTiles[i][j] = TileType.MaybeWall;
+				} else {
+					newTiles[i][j] = TileType.MaybeFloor;
+				}
+			}
+		}
+		this.tileTypes = newTiles;
+	}
+
+	void solidify() {
+		TileType[][] oldTiles = tileTypes;
+		TileType[][] newTiles = new TileType[width][height];
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				TileType previuousTile = oldTiles[i][j];
+				if (previuousTile == TileType.DefinetlyFloor || previuousTile == TileType.MaybeFloor) {
+					newTiles[i][j] = TileType.DefinetlyFloor;
+				} else {
+					newTiles[i][j] = TileType.DefinetlyWall;
+				}
+			}
+		}
+		tileTypes = newTiles;
 	}
 }

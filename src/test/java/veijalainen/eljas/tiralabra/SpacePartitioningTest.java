@@ -19,7 +19,7 @@ public class SpacePartitioningTest {
 	public void visitAll() {
 
 		boolean[][] booleans = new boolean[100][100];
-		SpacePartitioning spacePartitioning = new SpacePartitioning(100, 100);
+		SpacePartitioning spacePartitioning = new SpacePartitioning(100, 100, 16);
 
 		SpacePartitioning.visit(spacePartitioning.root, 0, 0, (node, x, y) -> {
 			for (int xi = 0; xi < node.width; xi++) {

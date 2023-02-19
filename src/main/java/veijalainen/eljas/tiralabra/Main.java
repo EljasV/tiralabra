@@ -26,7 +26,7 @@ public class Main {
 
 			width = Integer.parseInt(scanner.nextLine());
 		} catch (NumberFormatException e) {
-			width = 160;
+			width = 400;
 		}
 		System.out.println(width);
 
@@ -38,14 +38,26 @@ public class Main {
 		try {
 			height = Integer.parseInt(scanner.nextLine());
 		} catch (NumberFormatException e) {
-			height = 90;
+			height = 400;
 		}
 		System.out.println(height);
 
 		//
+		// Ohjelma kysyy huoneiden minimimäärän
+		//
+		System.out.println("Enter the minimum number of rooms:");
+		int nRooms;
+		try {
+			nRooms = Integer.parseInt(scanner.nextLine());
+		} catch (NumberFormatException e) {
+			nRooms = 64;
+		}
+		System.out.println(nRooms);
+
+		//
 		// Ohjelma kutsuu prosessoointifunktiota
 		//
-		BufferedImage image = CaveGenerator.process(width, height);
+		BufferedImage image = CaveGenerator.process(width, height,nRooms);
 
 		//
 		// Ohjelma kirjoittaa kuvan levylle

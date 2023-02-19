@@ -1,12 +1,14 @@
 package veijalainen.eljas.tiralabra;
 
+import veijalainen.eljas.tiralabra.util.Pair;
+
 import java.util.*;
 
 public class CorridorGenerator {
-	final Map<RoomInfo, Set<RoomInfo>> possibleConnections;
+	final HashMap<RoomInfo, Set<Pair<RoomInfo, DoublyConnectedEdgeList.HalfEdge>>> possibleConnections;
 
 	final Set<RoomInfo> unconnectedRooms;
-	final Map<RoomInfo, Set<RoomInfo>> connections;
+	final Map<RoomInfo, Set<Pair<RoomInfo, DoublyConnectedEdgeList.HalfEdge>>> connections;
 
 
 	/**
@@ -14,7 +16,7 @@ public class CorridorGenerator {
 	 *
 	 * @param possibleConnections Mahdolliset vierekkäiset huoneet
 	 */
-	public CorridorGenerator(Map<RoomInfo, Set<RoomInfo>> possibleConnections) {
+	public CorridorGenerator(HashMap<RoomInfo, Set<Pair<RoomInfo, DoublyConnectedEdgeList.HalfEdge>>> possibleConnections) {
 		this.possibleConnections = possibleConnections;
 		this.unconnectedRooms = new HashSet<>(possibleConnections.keySet());
 		this.connections = new HashMap<>();
@@ -23,24 +25,25 @@ public class CorridorGenerator {
 		unconnectedRooms.remove(firstInfo);
 		while (!unconnectedRooms.isEmpty()) {
 			//Etsii sellaisen huoneen, joka ei ole yhdistetty puuhun ja jonka jokin mahdolllinen naapuri tas on
-			RoomInfo roomInfo1 = unconnectedRooms.stream().filter(roomInfo -> possibleConnections.get(roomInfo).stream().anyMatch(roomInfo2 -> !unconnectedRooms.contains(roomInfo2))).findAny().get();
+			RoomInfo roomInfo1 = unconnectedRooms.stream().filter(roomInfo -> possibleConnections.get(roomInfo).stream().anyMatch(roomInfo2 -> !unconnectedRooms.contains(roomInfo2.left))).findAny().get();
 			unconnectedRooms.remove(roomInfo1);
 
-			RoomInfo roomInfo2 = possibleConnections.get(roomInfo1).stream().filter(roomInfo -> !unconnectedRooms.contains(roomInfo)).findAny().get();
+			Pair<RoomInfo, DoublyConnectedEdgeList.HalfEdge> roomInfoHalfEdgePair2 = possibleConnections.get(roomInfo1).stream().filter(roomInfo -> !unconnectedRooms.contains(roomInfo.left)).findAny().get();
+			RoomInfo roomInfo2 = roomInfoHalfEdgePair2.left;
 
 			connections.putIfAbsent(roomInfo1, new HashSet<>());
 			connections.putIfAbsent(roomInfo2, new HashSet<>());
 
-			connections.get(roomInfo1).add(roomInfo2);
-			connections.get(roomInfo2).add(roomInfo1);
+			connections.get(roomInfo1).add(roomInfoHalfEdgePair2);
+			connections.get(roomInfo2).add(new Pair<>(roomInfo1, roomInfoHalfEdgePair2.right.twin));
 		}
 
 		while (connections.values().stream().anyMatch(roomInfos -> roomInfos.size() < 2)) {
-			Map.Entry<RoomInfo, Set<RoomInfo>> fromEntry = connections.entrySet().stream().filter(roomInfoSetEntry -> roomInfoSetEntry.getValue().size() < 2).findAny().get();
-			RoomInfo toRoom = possibleConnections.get(fromEntry.getKey()).stream().filter(roomInfo -> roomInfo != fromEntry.getValue().stream().findAny().get()).findAny().get();
+			Map.Entry<RoomInfo, Set<Pair<RoomInfo, DoublyConnectedEdgeList.HalfEdge>>> fromEntry = connections.entrySet().stream().filter(roomInfoSetEntry -> roomInfoSetEntry.getValue().size() < 2).findAny().get();
+			Pair<RoomInfo, DoublyConnectedEdgeList.HalfEdge> toRoom = possibleConnections.get(fromEntry.getKey()).stream().filter(roomInfo -> !roomInfo.equals(fromEntry.getValue().stream().findAny().get())).findAny().get();
 
 			fromEntry.getValue().add(toRoom);
-			connections.get(toRoom).add(fromEntry.getKey());
+			connections.get(toRoom.left).add(new Pair<>(fromEntry.getKey(), toRoom.right.twin));
 		}
 
 	}

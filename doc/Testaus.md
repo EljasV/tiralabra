@@ -7,19 +7,21 @@ Yksikkötestauksen testikattavuus
 ![](media/Testikattavuus.png)
 
 ## Suorituskykytestaus
-Muun koodin joukossa on PerformanceTest-luokka, jossa on main-metodi. Se mittaa aikaa 1000 luolaston generaatioon. Sain omalla koneella tulokseksi
+Muun koodin joukossa on PerformanceTest-luokka, jossa on main-metodi. Se mittaa aikaa 1 luolaston generaatioon. Sain omalla koneella tulokseksi
 
-``1000 generointia kesti 22508ms``
+``1 generointia kesti 13385ms``
 
-Yhden luolaston generointi kestää noin 22 millisekuntia.
+Nyt suorituskyky eroaa edellisten viikkojen suorituskyvystä, kun soluautomaatti on käytössä.
+Soluautomaatin takia aikatilaavuus on O(leveys*korkeus). 
+Tulevaisuudessa soluautomaatti voidaan pysäyttää, kun kartta ei enää muutu.
 
 ![](media/Profilointi.png)
 
-Profilointikuvassa näkyy, että noin puolet prosessointiajasta käytetään kuvan piirtämiseen.
+
 ## Muu testaus
 Seuraava kuva on kehitysvaiheessa oleva algoritmi. Kuva on generoitu oletussyötteillä ja se näyttää halutulta.
 
 
 ![](media/o.png)
 
-Kuvassa on viereiset huoneet yhdistetty käytävillä.
+Musta väri on seinää ja valkoinen lattiaa.

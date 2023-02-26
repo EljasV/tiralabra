@@ -25,6 +25,8 @@ public class CaveGenerator {
 		DoublyConnectedEdgeList doublyConnectedEdgeList = new DoublyConnectedEdgeList();
 		Grid grid = new Grid(width, height);
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		int perlinScale = 150;
+		PerlinNoise perlinNoise = new PerlinNoise((int) Math.ceil((double) width / perlinScale), (int) Math.ceil((double) height / perlinScale));
 
 		//
 		// Käydään SpacePartitioning läpi ja lisätään alueet DoublyConnectedEdgeListaan, luodaan jokaiselle alueelle oma huone ja piirretään huoneet.
@@ -66,7 +68,7 @@ public class CaveGenerator {
 		doublyConnectedEdgeList.edges.forEach(halfEdge -> {
 			if (!safeEdges.contains(halfEdge)) {
 				grid.fillLine(halfEdge.origin.x, halfEdge.origin.y, halfEdge.next.origin.x, halfEdge.next.origin.y, TileType.DefinetlyWall);
-			}else {
+			} else {
 				grid.fillLine(halfEdge.origin.x, halfEdge.origin.y, halfEdge.next.origin.x, halfEdge.next.origin.y, TileType.MaybeWall);
 			}
 		});
@@ -91,9 +93,10 @@ public class CaveGenerator {
 		}
 
 		//
-		// Muunna Gridin arvot yhtenäiseksi
+		// Muunna Gridin arvot yhtenäiseksi ja koristele kartta
 		//
 		grid.solidify();
+		grid.decorate(perlinNoise, perlinScale);
 
 		//
 		// Tietorakenteiden avulla piirretään kuva
@@ -113,6 +116,18 @@ public class CaveGenerator {
 					break;
 				case DefinetlyFloor:
 					image.setRGB(x, y, 0xFF_FF_FF);
+					break;
+				case StoneWall:
+					image.setRGB(x, y, 0x30_30_30);
+					break;
+				case StoneFloor:
+					image.setRGB(x, y, 0xAA_AA_AA);
+					break;
+				case GrassWall:
+					image.setRGB(x, y, 0x00_4E_14);
+					break;
+				case GrassFloor:
+					image.setRGB(x, y, 0x3A_D3_4A);
 					break;
 				default:
 					image.setRGB(x, y, 0xFF_00_FF);

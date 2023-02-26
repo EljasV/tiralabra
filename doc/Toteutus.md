@@ -9,6 +9,7 @@ Ohjelman runkona on CaveGenetarorin process-metodi. Se pitää sisällään luol
 | Grid                    | Sisältää 2D-taulukon, jossa on tiedot kartan sisällöstä. Esim. onko tietyssä paikassa seinää tai lattiaa                                                  |
 | CorridorGenerator       | Vastaa käytävien luomisesta huoneiden välille.                                                                                                            |
 | RoomInfo                | Sisältää tietoa huoneesta                                                                                                                                 |
+| PerlinNoise             | Sisältää tietorakenteen ja algoritmin Perlin noisen tekemiseen                                                                                            |
 
 Yritän tehdä luolaston generointia tämän pohjalta:
 https://pvigier.github.io/2019/06/23/vagabond-dungeon-cave-generation.html

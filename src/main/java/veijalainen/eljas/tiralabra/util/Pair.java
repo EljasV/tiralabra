@@ -1,10 +1,10 @@
 package veijalainen.eljas.tiralabra.util;
 
-public final class Pair<LT, RT> {
-	public final LT left;
-	public final RT right;
+public final class Pair<L, R> {
+	public final L left;
+	public final R right;
 
-	public Pair(LT left, RT right) {
+	public Pair(L left, R right) {
 		this.left = left;
 		this.right = right;
 	}

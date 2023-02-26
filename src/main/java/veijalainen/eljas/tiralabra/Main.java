@@ -26,7 +26,7 @@ public class Main {
 
 			width = Integer.parseInt(scanner.nextLine());
 		} catch (NumberFormatException e) {
-			width = 400;
+			width = 1000;
 		}
 		System.out.println(width);
 
@@ -38,7 +38,7 @@ public class Main {
 		try {
 			height = Integer.parseInt(scanner.nextLine());
 		} catch (NumberFormatException e) {
-			height = 400;
+			height = 1000;
 		}
 		System.out.println(height);
 
@@ -50,14 +50,14 @@ public class Main {
 		try {
 			nRooms = Integer.parseInt(scanner.nextLine());
 		} catch (NumberFormatException e) {
-			nRooms = 64;
+			nRooms = 200;
 		}
 		System.out.println(nRooms);
 
 		//
 		// Ohjelma kutsuu prosessoointifunktiota
 		//
-		BufferedImage image = CaveGenerator.process(width, height,nRooms);
+		BufferedImage image = CaveGenerator.process(width, height, nRooms);
 
 		//
 		// Ohjelma kirjoittaa kuvan levylle

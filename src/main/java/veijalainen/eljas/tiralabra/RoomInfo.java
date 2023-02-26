@@ -34,16 +34,30 @@ public class RoomInfo {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
 
 		RoomInfo roomInfo = (RoomInfo) o;
 
-		if (innerX != roomInfo.innerX) return false;
-		if (innerY != roomInfo.innerY) return false;
-		if (innerWidth != roomInfo.innerWidth) return false;
-		if (innerHeight != roomInfo.innerHeight) return false;
-		if (midX != roomInfo.midX) return false;
+		if (innerX != roomInfo.innerX) {
+			return false;
+		}
+		if (innerY != roomInfo.innerY) {
+			return false;
+		}
+		if (innerWidth != roomInfo.innerWidth) {
+			return false;
+		}
+		if (innerHeight != roomInfo.innerHeight) {
+			return false;
+		}
+		if (midX != roomInfo.midX) {
+			return false;
+		}
 		return midY == roomInfo.midY;
 	}
 

@@ -8,7 +8,6 @@ public class SpacePartitioning {
 	final int height;
 
 
-
 	/**
 	 * Edustaa puun solmua.
 	 */
@@ -66,7 +65,7 @@ public class SpacePartitioning {
 	public SpacePartitioning(int width, int height, int nRooms) {
 		this.width = width;
 		this.height = height;
-		root = new Node(width, height, CaveGenerator.random.nextBoolean(), (int) Math.ceil(Math.log(nRooms)/Math.log(2)));
+		root = new Node(width, height, CaveGenerator.random.nextBoolean(), (int) Math.ceil(Math.log(nRooms) / Math.log(2)));
 	}
 
 	@FunctionalInterface

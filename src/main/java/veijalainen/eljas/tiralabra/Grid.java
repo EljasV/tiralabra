@@ -4,7 +4,12 @@ enum TileType {
 	MaybeWall,
 	MaybeFloor,
 	DefinetlyWall,
-	DefinetlyFloor
+	DefinetlyFloor,
+
+	StoneWall,
+	StoneFloor,
+	GrassWall,
+	GrassFloor
 };
 
 /**
@@ -134,6 +139,30 @@ public class Grid {
 					newTiles[i][j] = TileType.DefinetlyFloor;
 				} else {
 					newTiles[i][j] = TileType.DefinetlyWall;
+				}
+			}
+		}
+		tileTypes = newTiles;
+	}
+
+	void decorate(PerlinNoise perlinNoise, int scale) {
+		TileType[][] oldTiles = tileTypes;
+		TileType[][] newTiles = new TileType[width][height];
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				TileType previuousTile = oldTiles[i][j];
+				if (previuousTile == TileType.DefinetlyFloor) {
+					if (perlinNoise.sample((double) i / scale, (double) j / scale) > 0) {
+						newTiles[i][j] = TileType.GrassFloor;
+					} else {
+						newTiles[i][j] = TileType.StoneFloor;
+					}
+				} else {
+					if (perlinNoise.sample((double) i / scale, (double) j / scale) > 0) {
+						newTiles[i][j] = TileType.GrassWall;
+					} else {
+						newTiles[i][j] = TileType.StoneWall;
+					}
 				}
 			}
 		}

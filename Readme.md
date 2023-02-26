@@ -33,8 +33,10 @@ Javadoc
 * [Viikkoraportti 3](doc/viikkoraportit/viikkoraportti_3.md)
 * [Viikkoraportti 4](doc/viikkoraportit/viikkoraportti_4.md)
 * [Viikkoraportti 5](doc/viikkoraportit/viikkoraportti_5.md)
+* [Viikkoraportti 6](doc/viikkoraportit/viikkoraportti_6.md)
 
 ---
 [Määrittelydokumentti](doc/Maarittely.md)
 [Testausdokumentti](doc/Testaus.md)
 [Toteutusdokumentti](doc/Toteutus.md)
+[Käyttöohje](doc/Kayttoohje.md)

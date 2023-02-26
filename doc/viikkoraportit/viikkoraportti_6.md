@@ -11,3 +11,5 @@ Eipä tälllä hetkellä ole
 
 ### Mitä teen seuraavaksi?
 Teen lisää testejä ja parantelen dokumentaatiota.
+
+Aikaa kului tällä viikolla 7 tuntia.

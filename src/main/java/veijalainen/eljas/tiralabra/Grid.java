@@ -1,5 +1,7 @@
 package veijalainen.eljas.tiralabra;
 
+import java.util.*;
+
 enum TileType {
 	MaybeWall,
 	MaybeFloor,
@@ -98,7 +100,7 @@ public class Grid {
 
 
 	/**
-	 * Iteroi soluautomaattia
+	 * Iteroi soluautomaattia kerran
 	 */
 	public void iterate() {
 		TileType[][] oldTiles = tileTypes;
@@ -127,6 +129,30 @@ public class Grid {
 			}
 		}
 		this.tileTypes = newTiles;
+	}
+
+
+	/**
+	 * Iteroi soluautomaattia kunnes kartta ei enää muutu
+	 */
+	public void iterateUntilStable() {
+		Set<Integer> hashes = new HashSet<>();
+
+		int collisions = 0;
+		while (true) {
+			iterate();
+			int values = Arrays.deepHashCode(tileTypes);
+			if (hashes.contains(values)) {
+				collisions++;
+				//Tarkista usean iteraation ajalta, hajatutusarvojen mahdollisien törmäyksien varalta
+				if (collisions >= 3) {
+					break;
+				}
+			} else {
+				hashes.add(values);
+				collisions = 0;
+			}
+		}
 	}
 
 	void solidify() {

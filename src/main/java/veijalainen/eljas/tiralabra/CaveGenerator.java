@@ -88,9 +88,11 @@ public class CaveGenerator {
 		//
 		// Iteroi soluautomaattia
 		//
-		for (int i = 0; i < 1000; i++) {
+		/*for (int i = 0; i < 1000; i++) {
 			grid.iterate();
-		}
+		}*/
+
+		grid.iterateUntilStable();
 
 		//
 		// Muunna Gridin arvot yhtenäiseksi ja koristele kartta

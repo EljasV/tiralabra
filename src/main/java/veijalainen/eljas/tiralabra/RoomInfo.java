@@ -6,12 +6,12 @@ package veijalainen.eljas.tiralabra;
  */
 public class RoomInfo {
 
-	final int innerX;
-	final int innerY;
-	final int innerWidth;
-	final int innerHeight;
-	final int midX;
-	final int midY;
+	public final int innerX;
+	public final int innerY;
+	public final int innerWidth;
+	public final int innerHeight;
+	public final int midX;
+	public final int midY;
 
 	/**
 	 * Luo satunnaisen huoneen anneyulle alueelle

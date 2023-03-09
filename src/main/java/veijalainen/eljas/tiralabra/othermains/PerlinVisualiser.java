@@ -1,4 +1,6 @@
-package veijalainen.eljas.tiralabra;
+package veijalainen.eljas.tiralabra.othermains;
+
+import veijalainen.eljas.tiralabra.PerlinNoise;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

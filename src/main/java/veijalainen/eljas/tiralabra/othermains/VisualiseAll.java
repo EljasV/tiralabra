@@ -1,5 +1,6 @@
-package veijalainen.eljas.tiralabra;
+package veijalainen.eljas.tiralabra.othermains;
 
+import veijalainen.eljas.tiralabra.*;
 import veijalainen.eljas.tiralabra.util.Pair;
 
 import javax.imageio.ImageIO;

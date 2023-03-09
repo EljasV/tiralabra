@@ -8,7 +8,7 @@ public class CorridorGenerator {
 	final HashMap<RoomInfo, Set<Pair<RoomInfo, DoublyConnectedEdgeList.HalfEdge>>> possibleConnections;
 
 	final Set<RoomInfo> unconnectedRooms;
-	final Map<RoomInfo, Set<Pair<RoomInfo, DoublyConnectedEdgeList.HalfEdge>>> connections;
+	public final Map<RoomInfo, Set<Pair<RoomInfo, DoublyConnectedEdgeList.HalfEdge>>> connections;
 
 
 	/**

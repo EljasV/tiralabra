@@ -2,17 +2,7 @@ package veijalainen.eljas.tiralabra;
 
 import java.util.*;
 
-enum TileType {
-	MaybeWall,
-	MaybeFloor,
-	DefinetlyWall,
-	DefinetlyFloor,
-
-	StoneWall,
-	StoneFloor,
-	GrassWall,
-	GrassFloor
-};
+;
 
 /**
  * Ruudukko sisältää tiedon luolaston muodosta soluautomaattia ja lopullista sokkeloa varten
@@ -70,7 +60,7 @@ public class Grid {
 	}
 
 	@FunctionalInterface
-	interface Visitor {
+	public interface Visitor {
 		void visit(int x, int y, TileType tileType);
 	}
 
@@ -155,7 +145,7 @@ public class Grid {
 		}
 	}
 
-	void solidify() {
+	public void solidify() {
 		TileType[][] oldTiles = tileTypes;
 		TileType[][] newTiles = new TileType[width][height];
 		for (int i = 0; i < width; i++) {
@@ -171,7 +161,7 @@ public class Grid {
 		tileTypes = newTiles;
 	}
 
-	void decorate(PerlinNoise perlinNoise, int scale) {
+	public void decorate(PerlinNoise perlinNoise, int scale) {
 		TileType[][] oldTiles = tileTypes;
 		TileType[][] newTiles = new TileType[width][height];
 		for (int i = 0; i < width; i++) {

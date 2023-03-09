@@ -17,7 +17,7 @@ public class CaveGenerator {
 	 * @param nRooms Huoneiden minimiäärä
 	 * @return Kuva luolastosta
 	 */
-	static BufferedImage process(int width, int height, int nRooms) {
+	public static BufferedImage process(int width, int height, int nRooms) {
 		//
 		//Ohjelma luo tarvittavat tietorakenteet ja kuvan
 		//

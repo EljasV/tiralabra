@@ -5,9 +5,9 @@ import veijalainen.eljas.tiralabra.util.Pair;
 
 import java.util.*;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
-public class CaveGeneratorTest {
+public class IntegrationTest {
 
 
 	@Test

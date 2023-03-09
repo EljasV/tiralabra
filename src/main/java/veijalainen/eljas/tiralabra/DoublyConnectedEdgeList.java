@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
  */
 public class DoublyConnectedEdgeList {
 
-	Set<HalfEdge> edges;
+	public Set<HalfEdge> edges;
 
 	Set<Vertex> vertices;
 
@@ -22,12 +22,12 @@ public class DoublyConnectedEdgeList {
 		faces = new HashSet<>();
 	}
 
-	class HalfEdge {
-		Face face;
-		HalfEdge next;
+	public class HalfEdge {
+		public Face face;
+		public HalfEdge next;
 		HalfEdge previous;
-		Vertex origin;
-		HalfEdge twin;
+		public Vertex origin;
+		public HalfEdge twin;
 
 		public HalfEdge(Face face, Vertex origin) {
 			this.face = face;
@@ -35,8 +35,8 @@ public class DoublyConnectedEdgeList {
 		}
 	}
 
-	class Face {
-		RoomInfo roomInfo;
+	public class Face {
+		public RoomInfo roomInfo;
 		Vertex topLeft;
 		Vertex topRight;
 		Vertex bottomRight;
@@ -46,9 +46,9 @@ public class DoublyConnectedEdgeList {
 		}
 	}
 
-	class Vertex {
-		int x;
-		int y;
+	public class Vertex {
+		public int x;
+		public int y;
 
 		public Vertex(int x, int y) {
 			this.x = x;
@@ -90,7 +90,7 @@ public class DoublyConnectedEdgeList {
 	 * @param height Suorakulmion korkeus
 	 * @return
 	 */
-	Face addRectangle(int x, int y, int width, int height) {
+	public Face addRectangle(int x, int y, int width, int height) {
 		Face face = new Face();
 		faces.add(face);
 

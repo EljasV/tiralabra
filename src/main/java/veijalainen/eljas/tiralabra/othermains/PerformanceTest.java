@@ -1,4 +1,6 @@
-package veijalainen.eljas.tiralabra;
+package veijalainen.eljas.tiralabra.othermains;
+
+import veijalainen.eljas.tiralabra.CaveGenerator;
 
 import java.time.Duration;
 import java.time.Instant;

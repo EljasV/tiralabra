@@ -11,7 +11,7 @@ public class SpacePartitioning {
 	/**
 	 * Edustaa puun solmua.
 	 */
-	static class Node {
+	public static class Node {
 
 		/**
 		 * Pitää sisällään vasemman tai ylemmän lapsen. Jos on null, niin solmulla ei ole lapsia.
@@ -25,7 +25,8 @@ public class SpacePartitioning {
 		 * Onko solmun lapset rinnakkain ({@code  true}) vai päällekkäin ({@code false})
 		 */
 		boolean isHorizontal;
-		final int width, height;
+		public final int width;
+		public final int height;
 
 		/**
 		 * @param width        Solmun kattavan alueen leveys
@@ -53,7 +54,7 @@ public class SpacePartitioning {
 
 	}
 
-	Node root;
+	public Node root;
 
 	/**
 	 * Luo uuden SpacePartitioningin
@@ -69,7 +70,7 @@ public class SpacePartitioning {
 	}
 
 	@FunctionalInterface
-	interface Visitor {
+	public interface Visitor {
 		void visit(Node node, int x, int y);
 	}
 
@@ -82,7 +83,7 @@ public class SpacePartitioning {
 	 * @param y       Pitää sisällään y-koordinaatin rekursiossa. Käyttäjä kutsuu arvolla 0.
 	 * @param visitor Funktio, jonka halutaa suoritettavan kunkin lehtisolmun kohdalla. Saa parametriksi {@link Node}, x- sijainnin ja y-sijainnin.
 	 */
-	static void visit(Node node, int x, int y, Visitor visitor) {
+	public static void visit(Node node, int x, int y, Visitor visitor) {
 		if (node.left == null) {
 			visitor.visit(node, x, y);
 		} else {

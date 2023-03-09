@@ -6,3 +6,5 @@ Projektin aiheena on luolaston generointi. Valitsin sen, koska se kuulosti miele
 Ohjelma saa syötteekseen kartan koon ja huoneiden määrän. 
 
 Opinto-ohjelmani on tietojenkäsittelytieteen kandidaatti. Kirjoitan dokumentaation ja koodin suomeksi.
+
+

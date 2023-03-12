@@ -18,5 +18,5 @@ Tiedosto _tiralabra-1.0-SNAPSHOT.jar_ ilmestyy target-kansioon
 ``java -jar tiralabra-1.0-SNAPSHOT.jar``
 
 
-Ohjelma kysyy kartan korkeutta, leveyttä ja huoneiden minimimäärää. Tiedot suoritetaan kirjoittamalla numero konsoliin ja painamalla enter aina kunkin tarvitun tiedon kohdalla.
+Ohjelma kysyy kartan korkeutta, leveyttä ja huoneiden minimimäärää. Tiedot suoritetaan kirjoittamalla luku konsoliin ja painamalla enter aina kunkin tarvitun tiedon kohdalla.
 Ohjelma luo tiedoston o.png, joka sisältää luolaston.

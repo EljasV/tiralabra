@@ -1,10 +1,14 @@
 # Testaus
 
-## Yksikkötestaus
-Tällä hetkellä yksikkötesteillä testattuna on muutama tietorakenteen perustapaus
+## Yksikkö- ja integraatiotestaus
+Tällä hetkellä yksikkötesteillä testattuna on tietorakenteen perustapauksia ja integraatiotestinä katsotaan, onko kaikki huoneet yhteydessä toisiisna.
 
 Yksikkötestauksen testikattavuus
 ![](media/Testikattavuus.png)
+
+Testit voidaan kokeilla komennolla
+``mvn test``
+
 
 ## Suorituskykytestaus
 Muun koodin joukossa on PerformanceTest-luokka, jossa on main-metodi. Se mittaa aikaa 1 luolaston generaatioon. Sain omalla koneella tulokseksi
@@ -25,3 +29,6 @@ Seuraava kuva on melkein valmis algoritmi. Kuva on generoitu oletussyötteillä 
 ![](media/o.png)
 
 Kuvassa on kasvustolla päällystettyjä ja päällystämättömiä huoneita
+
+Lisäksi ohjelman eri vaiheita voidaan testata VisualiseAll- luokan main-metodilla. 
+Perlin Noisen toimivuus voidaan tarkastaa PerlinVisualiser- luokan main-metodilla.

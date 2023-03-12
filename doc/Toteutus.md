@@ -11,5 +11,16 @@ Ohjelman runkona on CaveGenetarorin process-metodi. Se pitää sisällään luol
 | RoomInfo                | Sisältää tietoa huoneesta                                                                                                                                 |
 | PerlinNoise             | Sisältää tietorakenteen ja algoritmin Perlin noisen tekemiseen                                                                                            |
 
-Yritän tehdä luolaston generointia tämän pohjalta:
-https://pvigier.github.io/2019/06/23/vagabond-dungeon-cave-generation.html
+
+Ohjelma voidaan siirtää pienillä muutoksilla peliin.
+Ohjelman aikatilavuus on O(leveys*korkeus), koska soluautomaatissa täytyy käydä läpi kaikki mahdolliset kohdat.
+
+
+## Lähteet:
+- Vigier P: Vagabond – Dungeon and Cave Generation – Part 1, internetsivu (https://pvigier.github.io/2019/06/23/vagabond-dungeon-cave-generation.html, viitattu 12.13.2023)
+- monia tekijöitä: Cellular Automata Method for Generating Random Cave-Like Levels, internetsivu (http://www.roguebasin.com/index.php?title=Cellular_Automata_Method_for_Generating_Random_Cave-Like_Levels, viitattu 12.13.2023)
+- monia tekijöitä: Perlin noise, internetsivu (https://en.wikipedia.org/wiki/Perlin_noise, viitattu 12.13.2023)
+- monia tekijöitä: Doubly connected edge list, internetsivu (https://en.wikipedia.org/wiki/Doubly_connected_edge_list, viitattu 12.13.2023)
+
+
+
